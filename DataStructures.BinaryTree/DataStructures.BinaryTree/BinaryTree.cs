@@ -97,5 +97,22 @@ namespace DataStructures.BinaryTree
                 }
             }
         }
+
+        public int GetTreeDepth()
+        {
+            return getTreeDepth(headNode);
+        }
+
+        private int getTreeDepth(Node rootNode)
+        {
+            if (rootNode == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1 + Math.Max(getTreeDepth(rootNode.left), getTreeDepth(rootNode.right));
+            }
+        }
     }
 }
