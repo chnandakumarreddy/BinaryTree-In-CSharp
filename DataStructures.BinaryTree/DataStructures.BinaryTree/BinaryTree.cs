@@ -114,5 +114,61 @@ namespace DataStructures.BinaryTree
                 return 1 + Math.Max(getTreeDepth(rootNode.left), getTreeDepth(rootNode.right));
             }
         }
+
+        /// <summary>
+        /// Traverse the entire tree in InOrder routine
+        /// </summary>
+        /// <returns></returns>
+        public List<T> GetInOrderTraversal()
+        {
+            return InOrderTraversal(headNode);
+        }
+
+        private List<T> InOrderTraversal(Node node)
+        {
+            List<T> traversedData = new List<T>();
+            if (node != null)
+            {
+                traversedData.AddRange(InOrderTraversal(node.left));
+                traversedData.Add(node.data);
+                traversedData.AddRange(InOrderTraversal(node.right));
+            }
+            return traversedData;
+        }
+
+        public List<T> GetPreOrderTraversal()
+        {
+            return PreOrderTraversal(headNode);
+        }
+
+        private List<T> PreOrderTraversal(Node node)
+        {
+            List<T> traversedData = new List<T>();
+            if (node != null)
+            {
+                traversedData.Add(node.data);
+                traversedData.AddRange(PreOrderTraversal(node.left));
+                traversedData.AddRange(PreOrderTraversal(node.right));
+            }
+            return traversedData;
+        }
+
+        public List<T> GetPostOrderTraversal()
+        {
+            return PostOrderTraversal(headNode);
+        }
+
+        private List<T> PostOrderTraversal(Node node)
+        {
+            List<T> traversedNode = new List<T>();
+            if (node != null)
+            {
+                traversedNode.AddRange(PostOrderTraversal(node.left));
+                traversedNode.AddRange(PostOrderTraversal(node.right));
+                traversedNode.Add(node.data);
+            }
+
+            return traversedNode;
+        }
     }
 }
