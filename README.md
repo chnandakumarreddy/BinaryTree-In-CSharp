@@ -9,3 +9,4 @@ Implementaion of Binary Trees in C#
   - GetPreOrderTraversal() - Gets the list of nodes traversed in PreOrder
   - GetPostOrderTraversal() - Gets the list of nodes traversed in PostOrder
   - HasPathSum(sum) - Checks whether any of the tree path (from root to leaf) equals sum.
+  - DoMirro() - Changes the tree so that roles of left and right nodes are swapped at each level. 
