@@ -187,7 +187,28 @@ namespace DataStructures.BinaryTree
                 return HasPathSumInTree(rootNode.left, sum - rootNode.data)
                     || HasPathSumInTree(rootNode.right, sum - rootNode.data);
             }
+        }
 
+        public void DoMirror()
+        {
+            DoMirrorOfTree(headNode);
+        }
+
+        private void DoMirrorOfTree(Node rootNode)
+        {
+            if(rootNode == null)
+            {
+                return;
+            }
+            else
+            {
+                Node temp = null;
+                DoMirrorOfTree(rootNode.left);
+                DoMirrorOfTree(rootNode.right);
+                temp = rootNode.left;
+                rootNode.left = rootNode.right;
+                rootNode.right = temp;
+            }
         }
     }
 }

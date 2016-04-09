@@ -96,8 +96,23 @@ namespace DataStructures.BinaryTree
             binaryTree.Insert(30);
             binaryTree.Insert(7);
             binaryTree.Insert(100);
-            var actualResult = binaryTree.HasPathSum(91);
+            var actualResult = binaryTree.HasPathSum(90);
             Assert.IsTrue(actualResult);
+        }
+
+        [TestMethod]
+        public void CanDoMirrorOfTree()
+        {
+            var binaryTree = new BinaryTree();
+            binaryTree.Insert(10);
+            binaryTree.Insert(50);
+            binaryTree.Insert(30);
+            binaryTree.Insert(7);
+            binaryTree.Insert(100);
+            binaryTree.DoMirror();
+            var actualResult = binaryTree.GetInOrderTraversal();
+            var expectedResult = new List<int>() { 100, 50, 30, 10,7 };
+            CollectionAssert.AreEqual(expectedResult, actualResult);
         }
     }
 }
