@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DataStructures.BinaryTree
 {
-    public class BinaryTree<T>
+    public class BinaryTree
     {
         public class Node
         {
-            public T data { get; set; }
+            public int data { get; set; }
             public Node right { get; set; }
             public Node left { get; set; }
 
-            public Node(T nodeData)
+            public Node(int nodeData)
             {
                 data = nodeData;
                 right = null;
@@ -31,7 +31,7 @@ namespace DataStructures.BinaryTree
         public int Count { get; private set; }
         private Node headNode { get; set; }
 
-        public Node Insert(T data)
+        public Node Insert(int data)
         {
             Node newNode = new Node(data);
             if (headNode == null)
@@ -48,7 +48,7 @@ namespace DataStructures.BinaryTree
             
         }
 
-        private Node InsertNewNode(Node rootNode, T data)
+        private Node InsertNewNode(Node rootNode, int data)
         {
             if (rootNode == null)
             {
@@ -58,7 +58,7 @@ namespace DataStructures.BinaryTree
             }
             else
             {
-                if (Comparer<T>.Default.Compare(data, rootNode.data) < 0)
+                if (data < rootNode.data )
                 {
                     rootNode.left = InsertNewNode(rootNode.left, data);
                 }
@@ -70,12 +70,12 @@ namespace DataStructures.BinaryTree
             return rootNode;
         }
 
-        public Node SearchBinaryTree(T data)
+        public Node SearchBinaryTree(int data)
         {
             return SearchBinaryTreeRecursively(headNode, data);
         }
 
-        private Node SearchBinaryTreeRecursively(Node parentNode, T data)
+        private Node SearchBinaryTreeRecursively(Node parentNode, int data)
         {
             if (parentNode == null)
             {
@@ -87,7 +87,7 @@ namespace DataStructures.BinaryTree
             }
             else
             {
-                if (Comparer<T>.Default.Compare(data, parentNode.data) < 0)
+                if (data < parentNode.data)
                 {
                     return SearchBinaryTreeRecursively(parentNode.left, data);
                 }
@@ -119,14 +119,14 @@ namespace DataStructures.BinaryTree
         /// Traverse the entire tree in InOrder routine
         /// </summary>
         /// <returns></returns>
-        public List<T> GetInOrderTraversal()
+        public List<int> GetInOrderTraversal()
         {
             return InOrderTraversal(headNode);
         }
 
-        private List<T> InOrderTraversal(Node node)
+        private List<int> InOrderTraversal(Node node)
         {
-            List<T> traversedData = new List<T>();
+            List<int> traversedData = new List<int>();
             if (node != null)
             {
                 traversedData.AddRange(InOrderTraversal(node.left));
@@ -136,14 +136,14 @@ namespace DataStructures.BinaryTree
             return traversedData;
         }
 
-        public List<T> GetPreOrderTraversal()
+        public List<int> GetPreOrderTraversal()
         {
             return PreOrderTraversal(headNode);
         }
 
-        private List<T> PreOrderTraversal(Node node)
+        private List<int> PreOrderTraversal(Node node)
         {
-            List<T> traversedData = new List<T>();
+            List<int> traversedData = new List<int>();
             if (node != null)
             {
                 traversedData.Add(node.data);
@@ -153,14 +153,14 @@ namespace DataStructures.BinaryTree
             return traversedData;
         }
 
-        public List<T> GetPostOrderTraversal()
+        public List<int> GetPostOrderTraversal()
         {
             return PostOrderTraversal(headNode);
         }
 
-        private List<T> PostOrderTraversal(Node node)
+        private List<int> PostOrderTraversal(Node node)
         {
-            List<T> traversedNode = new List<T>();
+            List<int> traversedNode = new List<int>();
             if (node != null)
             {
                 traversedNode.AddRange(PostOrderTraversal(node.left));
@@ -169,6 +169,25 @@ namespace DataStructures.BinaryTree
             }
 
             return traversedNode;
+        }
+
+        public bool HasPathSum(int sum)
+        {
+            return HasPathSumInTree(headNode, sum);
+        }
+
+        private bool HasPathSumInTree(Node rootNode, int sum)
+        {
+            if (rootNode == null)
+            {
+                return (sum == 0);
+            }
+            else
+            {
+                return HasPathSumInTree(rootNode.left, sum - rootNode.data)
+                    || HasPathSumInTree(rootNode.right, sum - rootNode.data);
+            }
+
         }
     }
 }

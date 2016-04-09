@@ -10,7 +10,7 @@ namespace DataStructures.BinaryTree
         [TestMethod]
         public void CanInsertIntoBinaryTree()
         {
-            var binaryTree = new BinaryTree<int>();
+            var binaryTree = new BinaryTree();
             binaryTree.Insert(10);
             binaryTree.Insert(50);
             binaryTree.Insert(30);
@@ -22,7 +22,7 @@ namespace DataStructures.BinaryTree
         [TestMethod]
         public void CanSearchBinaryTree()
         {
-            var binaryTree = new BinaryTree<int>();
+            var binaryTree = new BinaryTree();
             binaryTree.Insert(10);
             binaryTree.Insert(50);
             binaryTree.Insert(30);
@@ -35,7 +35,7 @@ namespace DataStructures.BinaryTree
         [TestMethod]
         public void CanGetBinaryTreeDepth()
         {
-            var binaryTree = new BinaryTree<int>();
+            var binaryTree = new BinaryTree();
             binaryTree.Insert(10);
             binaryTree.Insert(50);
             binaryTree.Insert(30);
@@ -48,7 +48,7 @@ namespace DataStructures.BinaryTree
         [TestMethod]
         public void CanTraverseInOrder()
         {
-            var binaryTree = new BinaryTree<int>();
+            var binaryTree = new BinaryTree();
             binaryTree.Insert(10);
             binaryTree.Insert(50);
             binaryTree.Insert(30);
@@ -62,7 +62,7 @@ namespace DataStructures.BinaryTree
         [TestMethod]
         public void CanTraversePreOrder()
         {
-            var binaryTree = new BinaryTree<int>();
+            var binaryTree = new BinaryTree();
             binaryTree.Insert(10);
             binaryTree.Insert(50);
             binaryTree.Insert(30);
@@ -76,7 +76,7 @@ namespace DataStructures.BinaryTree
         [TestMethod]
         public void CanTraversePostOrder()
         {
-            var binaryTree = new BinaryTree<int>();
+            var binaryTree = new BinaryTree();
             binaryTree.Insert(10);
             binaryTree.Insert(50);
             binaryTree.Insert(30);
@@ -85,6 +85,19 @@ namespace DataStructures.BinaryTree
             var actualResult = binaryTree.GetPostOrderTraversal();
             var expectedResult = new List<int>() { 7, 30, 100, 50, 10 };
             CollectionAssert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void CanFindPathSum()
+        {
+            var binaryTree = new BinaryTree();
+            binaryTree.Insert(10);
+            binaryTree.Insert(50);
+            binaryTree.Insert(30);
+            binaryTree.Insert(7);
+            binaryTree.Insert(100);
+            var actualResult = binaryTree.HasPathSum(91);
+            Assert.IsTrue(actualResult);
         }
     }
 }
