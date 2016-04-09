@@ -8,3 +8,4 @@ Implementaion of Binary Trees in C#
   - GetInOrderTraversal() - Gets the list of nodes traversed in InOrder
   - GetPreOrderTraversal() - Gets the list of nodes traversed in PreOrder
   - GetPostOrderTraversal() - Gets the list of nodes traversed in PostOrder
+  - HasPathSum(sum) - Checks whether any of the tree path (from root to leaf) equals sum.
